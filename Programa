@@ -1,0 +1,31 @@
+package BasesDatos;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+
+public class OracleBD {
+	private Connection conexion;
+    public Connection getconexion(){
+        return conexion;
+    }
+public void setConexion(Connection conexion){
+    this.conexion=conexion;
+    } 
+public OracleBD conectar(){
+    try {
+        Class.forName("oracle.jdbc.OracleDriver");
+        String BaseDatos="jdbc:oracle:thin:@localhost:1521:orcl";
+        conexion=DriverManager.getConnection(BaseDatos, "system", "Electiva_1");
+        //verificar la canexion
+        if (conexion != null){
+            System.out.println("Conexion establecida");          
+    } else{
+            System.out.println("Conexion NOO establecida");
+          }
+        // capturar error de conexion
+        
+        }catch (Exception e){
+            e.printStackTrace();  
+        }return this;        
+    } 
+}
